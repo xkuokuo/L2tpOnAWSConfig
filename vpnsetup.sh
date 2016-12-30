@@ -36,10 +36,10 @@ conn L2TP-PSK
     dpdaction=clear" >> $IPSEC_CONF
 
 #config the secret
-MY_SECRETE="zhuzhu"
+echo enter a shared secrete:
+read MY_SECRETE
 IPSEC_SECRETE="my.secrets"
 echo "%any %any : PSK $MY_SECRETE" >> "/etc/ipsec.d/$IPSEC_SECRETE"
-
 
 #enable ip forwarding
 sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/' /etc/sysctl.conf
@@ -55,3 +55,10 @@ service iptables save
 service iptables restart
 
 init 6
+
+#xl2tpd setup
+#XL2TPD_CONF=/etc/xl2tpd/xl2tpd.conf
+#sed -ir "s/local ip [0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/local ip $PRIVATE_IP/" $XL2TPD_CONF
+#sed -ir "s/require chap=no/require chap=yes/" $XL2TPD_CONF
+#sed -ir "s/require chap=no/require chap=yes/" $XL2TPD_CONF
+
