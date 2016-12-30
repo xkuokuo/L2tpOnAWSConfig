@@ -33,7 +33,7 @@ conn L2TP-PSK
     dpdaction=clear" >> $IPSEC_CONF
 
 #config the secret
-echo Please enter a shared secret (Remember it, would be used for VPN connection):
+echo "Please enter a shared secret (Remember it, would be used for VPN connection)":
 read MY_SECRETE
 IPSEC_SECRETE="/etc/ipsec.secrets"
 echo "%any %any : PSK \"$MY_SECRETE\"" >> $IPSEC_SECRETE
@@ -64,9 +64,9 @@ sed -ir "s/require chap = no/require chap = yes/" $XL2TPD_CONF
 sed -ir "s/name = .*/name = $SERVER_NAME/" $XL2TPD_CONF
 
 #xl2tpd password setup
-echo Please enter an account name for your VPN connection (Remember it, would be used for VPN connection):
+echo "Please enter an account name for your VPN connection (Remember it, would be used for VPN connection)":
 read CLIENT_NAME
-echo Please enter an password for your VPN connection (Remember it, would be used for VPN connection):
+echo "Please enter an password for your VPN connection (Remember it, would be used for VPN connection)":
 read PASSWD
 
 PASSWD_FILE=/etc/ppp/chap-secrets
